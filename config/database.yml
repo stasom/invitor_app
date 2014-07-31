@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false
+  database: invitor_development
+  pool: 5
+  username: postgres
