@@ -7,8 +7,11 @@
     = csrf_meta_tags
   %body
     = yield
+    
+    %h1
+      HELLO BOTI
 
     %p.notice
-	  NOTICE#{notice}
-	%p.alert
-	  ALERT#{alert}
+      NOTICE#{notice}
+    %p.alert
+      ALERT#{alert}
