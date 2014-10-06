@@ -10,6 +10,7 @@ gem 'bootstrap-sass'
 gem 'thin'
 gem 'haml-rails'
 gem 'devise'
+gem 'will_paginate'
 
 gem 'jquery-rails'
 gem 'turbolinks'

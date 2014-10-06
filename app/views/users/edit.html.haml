@@ -1,0 +1,26 @@
+%h3 Edit user profile
+= form_for @user, url: {action: 'update'} do |f|
+  .field
+    = f.label :first_name
+    %br
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    %br
+    = f.text_field :last_name
+  .field
+    = f.label :email
+    %br
+    = f.email_field :email, autofocus: true
+  .field
+    = f.label :password
+    %br
+    = f.password_field :password, autocomplete: "off"
+  .field
+    = f.label :password_confirmation
+    %br
+    = f.password_field :password_confirmation, autocomplete: "off"
+    %br
+    %br
+  .dev-butt
+    = f.submit "Update"

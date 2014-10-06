@@ -1,17 +1,59 @@
 !!!
-%html
+%html{lang: "en"}
   %head
+    %meta{charset: "utf-8"}
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
     %title InvitorApp
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    %link{href: "http://fonts.googleapis.com/css?family=Noto+Sans&subset=latin,latin-ext", rel: "stylesheet", type: "text/css"}
     = csrf_meta_tags
   %body
-    = yield
-    
-    %h1
-      HELLO BOTI
+    .container
+      .row#flash
+        .col-xs-12
+          %p.notice
+            #{notice}
+          %p.alert
+            #{alert}
 
-    %p.notice
-      NOTICE#{notice}
-    %p.alert
-      ALERT#{alert}
+      .row
+        .col-xs-2.col-xs-offset-1.left-menu
+          .logo
+            = link_to image_tag("logo_.png"), root_path
+          .menu
+            %ul
+              - if current_user
+                %li
+                  = link_to 'My profile', users_show_path
+                %li
+                  = link_to 'Edit profile', edit_user_registration_path
+                %li
+                  = link_to 'View events', events_index_path
+                %hr
+                %li
+                  = link_to 'Sign out', destroy_user_session_path, method: :delete
+
+              - else
+                %li
+                  = link_to 'Sign in', user_session_path
+                %li
+                  = link_to 'Registration', new_user_registration_path
+
+      
+        .col-xs-6.col-xs-offset-3
+          = yield
+      
+      .row#footer
+        .col-xs-2.col-xs-offset-1.left-menu
+          © Invitor_app | 2014
+
+        /   = link_to "Edit profile", '/users/edit'
+        /   = link_to "View events", '/events'
+        /   = link_to "New invitation", '/invitations/new'
+        /   = link_to "My invitations", '/invitations'
+        /   = link_to "My balance", '/users/show'
+        /   = link_to "Logout", '/sessions/destroy'
+        /- else
+        /   = render 'home/index'
