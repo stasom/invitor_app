@@ -1,40 +1,43 @@
 Rails.application.routes.draw do
 
-  get 'invitations/index'
+  devise_for :users
+  resources :users, only: :show
+  resources :events
+  resources :invitations
 
-  get 'invitations/show'
+  #patch 'events/:id/edit', to 'events/edit'
+  # get 'invitations/index'
 
-  get 'invitations/new'
+  # get 'invitations/show'
 
-  get 'invitations/edit'
+  # get 'invitations/new'
 
-  get 'invitations/create'
+  # get 'invitations/edit'
 
-  get 'invitations/update'
+  # get 'invitations/create'
 
-  get 'invitations/destroy'
+  # get 'invitations/update'
 
-  get 'events/index'
+  # get 'invitations/destroy'
 
-  get 'events/show'
+  # get 'events/index'
 
-  get 'events/new'
+  # get 'events/show'
 
-  get 'events/edit'
+  # get 'events/new'
 
-  get 'events/create'
+  # get 'events/edit'
 
-  get 'events/update'
+  # get 'events/create'
 
-  get 'events/destroy'
+  # get 'events/update'
 
-  get 'users/show'
+  # get 'events/destroy'
 
   #get 'users/edit'
 
   #get 'users/update'
 
-  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

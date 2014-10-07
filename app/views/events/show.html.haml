@@ -1,2 +1,21 @@
-%h1 Events#show
-%p Find me in app/views/events/show.html.haml
+%h1 #{@event.name.capitalize} event
+%p
+  Event name:
+  %strong
+    = @event.name
+%p 
+  Start date:
+  %strong
+    = @event.start_date.strftime("%d/%m/%Y %H:%M")
+%p
+  End date:
+  %strong
+    = @event.end_date.strftime("%d/%m/%Y %H:%M")
+%p
+  Description:
+  %strong
+    = @event.description
+%br
+%br
+.inv-butt
+  = link_to "Edit event", edit_event_path

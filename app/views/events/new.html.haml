@@ -1,5 +1,5 @@
 %h2 New event
-= form_for(@event) do |f|
+= form_for(@event, url: events_path(@event.id)) do |f|
   - if @event.errors.any?
     #error_explanation
       %h2
@@ -24,5 +24,7 @@
     = f.label :end_date
     %br
     = f.datetime_select :end_date
+    %br
+    %br
   .dev-butt
     = f.submit
