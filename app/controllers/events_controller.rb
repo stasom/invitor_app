@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.last
+    @event = Event.find(params[:id])
   end
 
   def new
@@ -42,10 +42,16 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    respond_to do |format|
+      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
     def event_params
-      params.require(:event).permit(:name, :description, :start_date, :end_date)
+      params.require(:event).permit(:name, :description, :start_date, :end_date, :location)
     end
 end

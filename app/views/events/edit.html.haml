@@ -24,7 +24,14 @@
     = f.label :end_date
     %br
     = f.datetime_select :end_date
+  .field
+    = f.label :location
+    %br
+    = f.text_field :location
     %br
     %br
   .dev-butt
     = f.submit
+  %br
+.dev-butt
+  #{button_to "Delete this event", event_path(@event), data: { confirm: "Are you sure?" }, method: :delete}

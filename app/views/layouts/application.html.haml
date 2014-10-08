@@ -29,8 +29,6 @@
                   = link_to 'My profile', "/users/#{current_user.id}"
                 %li{class: (params[:controller] == 'devise/registrations' && params[:action] == 'edit' ? 'hidden' : '')}
                   = link_to 'Edit profile', edit_user_registration_path
-                %li
-                  = link_to 'View events', events_path
                 %hr
                 %li
                   = link_to 'Sign out', destroy_user_session_path, method: :delete
@@ -41,7 +39,7 @@
                 %li{class: (params[:controller] == 'devise/registrations' && params[:action] == 'new' ? 'hidden' : '')}
                   = link_to 'Registration', new_user_registration_path
 
-        .col-xs-7.col-xs-offset-2
+        .col-xs-8.col-xs-offset-1
           = yield
       
       .row#footer

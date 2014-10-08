@@ -5,38 +5,7 @@ Rails.application.routes.draw do
   resources :events
   resources :invitations
 
-  #patch 'events/:id/edit', to 'events/edit'
-  # get 'invitations/index'
-
-  # get 'invitations/show'
-
-  # get 'invitations/new'
-
-  # get 'invitations/edit'
-
-  # get 'invitations/create'
-
-  # get 'invitations/update'
-
-  # get 'invitations/destroy'
-
-  # get 'events/index'
-
-  # get 'events/show'
-
-  # get 'events/new'
-
-  # get 'events/edit'
-
-  # get 'events/create'
-
-  # get 'events/update'
-
-  # get 'events/destroy'
-
-  #get 'users/edit'
-
-  #get 'users/update'
+  #match ':controller(/:action(/:id))(.:format)', via: :all
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

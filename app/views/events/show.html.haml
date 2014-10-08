@@ -1,5 +1,7 @@
 %h1 #{@event.name.capitalize} event
 %p
+  = @users
+%p
   Event name:
   %strong
     = @event.name
@@ -12,10 +14,16 @@
   %strong
     = @event.end_date.strftime("%d/%m/%Y %H:%M")
 %p
+  Location
+  %strong
+    = @event.location
+%p
   Description:
   %strong
     = @event.description
 %br
-%br
 .inv-butt
   = link_to "Edit event", edit_event_path
+%br
+.inv-butt
+  = link_to "Send an invitation to this event", new_invitation_path
