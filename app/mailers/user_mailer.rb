@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: 'no-reply@inviapp.hu'
+  default from: 'no-reply@invi.hu'
   layout 'email.html.haml'
 
   def event_email(user)
