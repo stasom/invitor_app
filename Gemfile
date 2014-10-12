@@ -12,6 +12,7 @@ gem 'haml-rails'
 gem 'devise'
 gem 'will_paginate'
 gem 'carrierwave'
+gem 'animate-rails'
 
 gem 'jquery-rails'
 gem 'turbolinks'

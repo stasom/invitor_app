@@ -1,6 +1,7 @@
 .edit-profil
   .row
     .col-xs-2.avatar-image
+      %br
       = image_tag(current_user.avatar)
     .col-xs-10
       %p
@@ -28,7 +29,6 @@
           Last sign in ip:
           %strong
             = @user.last_sign_in_ip
-%br
 %br
 .inv-butt
   = link_to "Edit my profil", edit_user_registration_path
