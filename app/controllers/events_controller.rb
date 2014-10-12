@@ -3,6 +3,10 @@ class EventsController < ApplicationController
     @events = Event.get_events_page(params[:page])
   end
 
+  def my_index
+    @events = current_user.events
+  end
+
   def show
     @event = Event.find(params[:id])
   end
@@ -55,3 +59,8 @@ class EventsController < ApplicationController
       params.require(:event).permit(:name, :description, :start_date, :end_date, :location)
     end
 end
+
+# The require method ensures that a specific parameter is present, and if it's not provided, 
+# the require method throws an error. It returns an instance of ActionController::Parameters for the key passed into require.
+# The permit method returns a copy of the parameters object, returning only the permitted keys and values. 
+# When creating a new ActiveRecord model, only the permitted attributes are passed into the model.

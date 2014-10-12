@@ -29,6 +29,10 @@
                   = link_to 'My profile', "/users/#{current_user.id}"
                 %li{class: (params[:controller] == 'devise/registrations' && params[:action] == 'edit' ? 'hidden' : '')}
                   = link_to 'Edit profile', edit_user_registration_path
+                %li{class: (params[:controller] == 'events' && params[:action] == 'index' ? 'hidden' : '')}
+                  = link_to 'All events', events_path
+                %li{class: (params[:controller] == 'events' && params[:action] == 'my_index' ? 'hidden' : '')}
+                  = link_to 'My events', my_events_path
                 %hr
                 %li
                   = link_to 'Sign out', destroy_user_session_path, method: :delete

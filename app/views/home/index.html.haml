@@ -1,8 +1,13 @@
-%h1
-  Hello #{current_user.first_name} #{current_user.last_name} !
-%p
-  How are you today?
-= render partial: 'events/table'
+.hello-profil
+  .row
+    .col-xs-2.avatar-image
+      = image_tag(current_user.avatar)
+    .col-xs-10
+      %h1
+        Hello #{current_user.first_name} #{current_user.last_name} !
+      %p
+        How are you today?
+= render partial: 'events/f_p_table'
 %br
 %br
 .inv-butt

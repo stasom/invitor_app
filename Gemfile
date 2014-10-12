@@ -11,6 +11,7 @@ gem 'thin'
 gem 'haml-rails'
 gem 'devise'
 gem 'will_paginate'
+gem 'carrierwave'
 
 gem 'jquery-rails'
 gem 'turbolinks'

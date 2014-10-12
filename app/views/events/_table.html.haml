@@ -1,4 +1,3 @@
-%h3 Events waiting for you
 /= will_paginate @events
 %table
   %thead
@@ -8,9 +7,9 @@
       %th End date
       %th Location
       %th Description
-      %th{:colspan => "3"}
+      %th
   %tbody
-    - @future_events.each do |event|
+    - @events.each do |event|
       %tr
         %td= event.name
         %td= event.start_date.strftime("%d/%m/%Y %H:%M")
@@ -18,32 +17,13 @@
         %td= event.location
         %td= event.description
         - if user_signed_in?
-          %td= link_to 'S', "/events/show/#{event.id}"
-          %td= link_to 'E', "/events/edit/#{event.id}"
-          %td= link_to 'D', event, method: :delete, data: { confirm: 'Are you sure?' }
+          %td
+            = link_to 'S', event, method: :get
+          %td
+            = link_to 'E', "/events/#{event.id}/edit"
+          %td
+            = link_to 'D', event, method: :delete, data: { confirm: 'Are you sure?' }
 /= will_paginate @events
-%br         
-%h3 Events that took part in
-/= will_paginate @events
-%table
-  %thead
-    %tr
-      %th Name
-      %th Start date
-      %th End date
-      %th Location
-      %th Description
-      %th{:colspan => "3"}
-  %tbody
-    - @past_events.each do |event|
-      %tr
-        %td= event.name
-        %td= event.start_date.strftime("%d/%m/%Y %H:%M")
-        %td= event.end_date.strftime("%d/%m/%Y %H:%M")
-        %td= event.location
-        %td= event.description
-        - if user_signed_in?
-          %td= link_to 'S', "/events/show/#{event.id}"
-          %td= link_to 'E', "/events/edit/#{event.id}"
-          %td= link_to 'D', event, method: :delete, data: { confirm: 'Are you sure?' }
-/= will_paginate @events
+%br
+.inv-butt
+  = link_to 'Create a new event', new_event_path

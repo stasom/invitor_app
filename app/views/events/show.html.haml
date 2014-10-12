@@ -25,5 +25,9 @@
 .inv-butt
   = link_to "Edit event", edit_event_path
 %br
-.inv-butt
-  = link_to "Send an invitation to this event", new_invitation_path
+- if @event.start_date > Time.now
+  .inv-butt
+    = link_to "Create an invitation to this event", new_invitation_path
+- else
+  .inv-butt
+    = link_to 'Delete', @event, method: :delete, data: { confirm: 'Are you sure?' }

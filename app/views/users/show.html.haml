@@ -1,28 +1,33 @@
-%p
-  First name:
-  %strong
-    = @user.first_name
-%p
-  Last name:
-  %strong
-    = @user.last_name
-- if @user == current_user
-  %p 
-    Email:
-    %strong
-      = @user.email
-  %p
-    Sign in count:
-    %strong
-      = @user.sign_in_count
-  %p
-    Current sign in ip:
-    %strong
-      = @user.current_sign_in_ip
-  %p
-    Last sign in ip:
-    %strong
-      = @user.last_sign_in_ip
+.edit-profil
+  .row
+    .col-xs-2.avatar-image
+      = image_tag(current_user.avatar)
+    .col-xs-10
+      %p
+        First name:
+        %strong
+          = @user.first_name
+      %p
+        Last name:
+        %strong
+          = @user.last_name
+      - if @user == current_user
+        %p 
+          Email:
+          %strong
+            = @user.email
+        %p
+          Sign in count:
+          %strong
+            = @user.sign_in_count
+        %p
+          Current sign in ip:
+          %strong
+            = @user.current_sign_in_ip
+        %p
+          Last sign in ip:
+          %strong
+            = @user.last_sign_in_ip
 %br
 %br
 .inv-butt
