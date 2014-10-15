@@ -1,38 +1,9 @@
 %h2 New invitation
-= form_for(@invitation, url: invitations_path(@invitation.id)) do |f|
-  / .field
-  /   = f.label :email1
-  /   %br
-  /   = f.email_field :accepted #TODO
-  / .field
-  /   = f.label :email2
-  /   %br
-  /   = f.email_field :accepted
-  /   %br
-  /   %br
+= form_for @invitation, url: {controller: "invitations", action: "create"} do |f|
+  = text_field_tag 'invitation[user_emails]'
+  = f.hidden_field :event_id
+  %br
   .dev-butt
     = f.submit "Send emails"
-/ = form_for(@invitation, url: invitations_path(@invitation.id))do |f|
-/   %br
-/   = flash[:notice]
-/   %br
-/   .field
-/     = f.label :email1
-/     %br
-/     = f.email_field :email
-/   .field
-/     = f.label :email2
-/     %br
-/     = f.email_field :email
-/   .field
-/     = f.label :email3
-/     %br
-/     = f.email_field :email
-/   .field
-/     = f.label :email4
-/     %br
-/     = f.email_field :email
-/     %br
-/     %br
-/   .dev-butt
-/     = f.submit "Send emails"
+
+/= form_for(@invitation, url: invitations_path(@invitation.id)) do |f|=

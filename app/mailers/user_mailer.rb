@@ -4,16 +4,22 @@ class UserMailer < ActionMailer::Base
   layout 'email.html.haml'
 
   def event_email(invitation)
-    @invitation = invitation
+    @event = invitation.event
+    #@receiver_email = receiver_email
+    #@invitation = invitation
     #@user = user
-    # @email1 = "test@gmail.com"
-    # @email2 = "test2@gmail.com"
-    # @email3 = "test3@gmail.com"
-    # @recipients = @email1, @email2, @email3
-    # emails = @recipients.collect
-    
-    # mail(to: emails, subject: "Group invitation")
+    #@email1 = "toni@invi.hu"
+    #@email2 = "bela@invi.hu"
+    #@email3 = "antal@invi.hu"
+    #@recipients = @email1, @email2, @email3
+    #emails = @recipients.join(',')
 
-    mail(to: 'toni@invi.hu, bela@invi.hu, anti@invi.hu', subject: "Invitation")
+    #emails = emails
+    #@recipients = User.all
+    #emails = @recipients.collect(&:email).join(",")
+
+    mail(to: invitation.user.email, subject: "Group invitation")
+
+    #mail(to: 'toni@invi.hu, bela@invi.hu, antal@invi.hu', subject: "Invitation")
   end
 end

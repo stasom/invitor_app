@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   def index
-    #@events = Event.get_events_page(params[:page])
-    @events = Event.all.where(user_id: 'current_user.id').get_events_page(params[:page])
+    @events = Event.get_events_page(params[:page])
+    #@events = Event.all.where(user_id: 'current_user.id').get_events_page(params[:page])
   end
 
   def my_index
