@@ -5,6 +5,12 @@ class UserMailer < ActionMailer::Base
 
   def event_email(invitation)
     @event = invitation.event
+    @invitation = invitation
+    if @invitation.user.first_name.present?
+      @greeting = invitation.user.first_name
+    else
+      @greeting = invitation.user.email
+    end
     #@receiver_email = receiver_email
     #@invitation = invitation
     #@user = user

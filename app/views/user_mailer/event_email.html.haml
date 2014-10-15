@@ -1,4 +1,7 @@
-%h1 Hello!
+%h1 Hello #{@greeting}!
+%p Your friend #{@event.owner.first_name.upcase} invited you to the #{@event.name.upcase} event.
+%p This event begins on #{@event.start_date} and ends on #{@event.end_date}.
+%p Location: #{@event.location}
+%p Description: #{@event.description}
+%p If you would like to attend this event please click the link below:
 
-/%p Your friend #{@invitation.user.first_name} invited you to the #{@invitation.event.name} event.
-/%p If you would like to attend this event please click the link below:

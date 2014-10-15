@@ -6,4 +6,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :invitations
   has_many :events, through: :invitations
+
+  has_many :own_events, class_name: 'Event', foreign_key: 'owner_id'
+
+  # def own_events
+  #   self.events
+  # end
 end

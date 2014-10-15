@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   def index
     @events = Event.get_events_page(params[:page])
-    #@events = Event.all.where(user_id: 'current_user.id').get_events_page(params[:page])
   end
 
   def my_index
@@ -14,6 +13,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event.user = User.find(params[:user_id])
   end
 
   def edit
@@ -21,28 +21,22 @@ class EventsController < ApplicationController
   end
 
   def create
+    #@event_user = params[:event][:user_id]
     @event = Event.new(event_params)
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    #@event.user = current_user
+    if @event.save
+      redirect_to @event, notice: 'Event was successfully created.'
+    else
+      render :new
     end
   end
 
   def update
     @event = Event.find(params[:id])
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    if @event.update(event_params)
+      redirect_to @event, notice: 'Event was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -50,8 +44,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
+      redirect_to events_url, notice: 'Event was successfully destroyed.'
     end
   end
 

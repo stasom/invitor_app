@@ -14,6 +14,7 @@ class InvitationsController < ApplicationController
   end
 
   def create
+    #@invitation = Invitation.get_create
     user_emails = params[:invitation][:user_emails]
     user_emails.split(", ").each do |email|
       if User.find_by_email(email)

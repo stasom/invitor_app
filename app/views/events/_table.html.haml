@@ -19,10 +19,11 @@
         - if user_signed_in?
           %td
             = link_to 'S', event, method: :get
-          %td
-            = link_to 'E', "/events/#{event.id}/edit"
-          %td
-            = link_to 'D', event, method: :delete, data: { confirm: 'Are you sure?' }
+          - if event.owner == current_user
+            %td
+              = link_to 'E', "/events/#{event.id}/edit"
+            %td
+              = link_to 'D', event, method: :delete, data: { confirm: 'Are you sure?' }
 /= will_paginate @events
 %br
 .inv-butt

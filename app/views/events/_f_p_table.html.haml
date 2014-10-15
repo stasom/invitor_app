@@ -19,8 +19,9 @@
         %td= event.description
         - if user_signed_in?
           %td= link_to 'S', event, method: :get
-          %td= link_to 'E', "/events/#{event.id}/edit"
-          %td= link_to 'D', event, method: :delete, data: { confirm: 'Are you sure?' }
+          - if event.owner == current_user
+            %td= link_to 'E', "/events/#{event.id}/edit"
+            %td= link_to 'D', event, method: :delete, data: { confirm: 'Are you sure?' }
 /= will_paginate @events
 %br         
 %h3 Events that took part in
@@ -42,8 +43,9 @@
         %td= event.end_date.strftime("%d/%m/%Y %H:%M")
         %td= event.location
         %td= event.description
-        - if user_signed_in?
+        - if user_signed_in? && event.owner == current_user
           %td= link_to 'S', event, method: :get
-          %td
-          %td= link_to 'D', event, method: :delete, data: { confirm: 'Are you sure?' }
+          - if event.owner == current_user
+            %td
+            %td= link_to 'D', event, method: :delete, data: { confirm: 'Are you sure?' }
 /= will_paginate @events
