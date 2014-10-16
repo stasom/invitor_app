@@ -2,27 +2,27 @@ class Invitation < ActiveRecord::Base
   belongs_to :user
   belongs_to :event
 
-  validates :user_id, :event_id, presence: true
+  validates :event_id, :user_email, presence: true
 
-  def self.get_create
-    user_emails = params[:invitation][:user_emails]
+  def self.create_invitations(invitation_event_id, user_emails)
+    #invitation_event_id = params[:invitation][:event_id]
+    emails = user_emails
+    #user_emails = params[:invitation][:user_emails]
     user_emails.split(", ").each do |email|
       if User.find_by_email(email)
-        @invitation = Invitation.new(event_id: params[:invitation][:event_id])
+        @invitation = Invitation.new(event_id: invitation_event_id)
         @invitation.user = User.find_by_email(email)
-        #puts @invitation.inspect
+        @invitation.user_email = User.find_by_email(email).email
         if @invitation.save
           UserMailer.event_email(@invitation).deliver
         end
 
-        # respond_to do |format|
-        #   if @invitation.save
-        #     UserMailer.event_email(@invitation, @receivers).deliver
-        #     redirect_to @invitation, notice: 'Invitation was successfully send.'
-        #   else
-        #     render :new
-        #   end
-        # end
+      else
+        @invitation = Invitation.new(event_id: invitation_event_id)
+        @invitation.user_email = email
+        if @invitation.save
+          UserMailer.event_email(@invitation).deliver
+        end
       end
     end
   end

@@ -23,5 +23,5 @@ Event.create!(name: 'utazas', start_date: "#{Time.now + 3.years}", end_date: "#{
 Event.create!(name: 'foci', start_date: "#{Time.now - 2.days}", end_date: "#{Time.now - 1.days}", location: 'grund', description: 'Most gyoznunk kell!', owner: User.first)
 
 puts "Creating invitations"
-Invitation.create!(accepted: true, user: User.last, event: Event.first)
-Invitation.create!(accepted: false, user: User.last, event: Event.last)
+Invitation.create!(accepted: true, user: User.last, event: Event.first, user_email: User.last.email)
+Invitation.create!(accepted: false, user: User.last, event: Event.last, user_email: User.last.email)

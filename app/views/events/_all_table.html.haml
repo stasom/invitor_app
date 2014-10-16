@@ -12,8 +12,8 @@
     - @events.each do |event|
       %tr
         %td= event.name
-        %td= event.start_date.strftime("%d/%m/%Y %H:%M")
-        %td= event.end_date.strftime("%d/%m/%Y %H:%M")
+        %td= event.start_date#.strftime("%d/%m/%Y %H:%M")
+        %td= event.end_date#.strftime("%d/%m/%Y %H:%M")
         %td= event.location
         %td= event.description
         - if user_signed_in?

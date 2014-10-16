@@ -22,12 +22,15 @@
   %strong
     = @event.description
 %br
-.inv-butt
-  = link_to "Edit event", edit_event_path
+-if @event.owner == current_user
+  .inv-butt
+    = link_to "Edit event", edit_event_path
+  %br
+  - if @event.start_date >= Time.now
+    .inv-butt
+      = link_to "Create an invitation to this event", new_invitation_path(event_id: @event.id)
+  - else
+    .inv-butt
+      = link_to 'Delete', @event, method: :delete, data: { confirm: 'Are you sure?' }
 %br
-- if @event.start_date >= Time.now
-  .inv-butt
-    = link_to "Create an invitation to this event", new_invitation_path(event_id: @event.id)
-- else
-  .inv-butt
-    = link_to 'Delete', @event, method: :delete, data: { confirm: 'Are you sure?' }
+  = link_to "Back", :back

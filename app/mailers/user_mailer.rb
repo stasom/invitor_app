@@ -6,26 +6,13 @@ class UserMailer < ActionMailer::Base
   def event_email(invitation)
     @event = invitation.event
     @invitation = invitation
-    if @invitation.user.first_name.present?
+    if @invitation.user.present?
       @greeting = invitation.user.first_name
+      mail(to: invitation.user.email, subject: "USER invitation")
     else
-      @greeting = invitation.user.email
+      @greeting = invitation.user_email
+      mail(to: invitation.user_email, subject: "EMAIL invitation")
     end
-    #@receiver_email = receiver_email
-    #@invitation = invitation
-    #@user = user
-    #@email1 = "toni@invi.hu"
-    #@email2 = "bela@invi.hu"
-    #@email3 = "antal@invi.hu"
-    #@recipients = @email1, @email2, @email3
-    #emails = @recipients.join(',')
-
-    #emails = emails
-    #@recipients = User.all
-    #emails = @recipients.collect(&:email).join(",")
-
-    mail(to: invitation.user.email, subject: "Group invitation")
-
-    #mail(to: 'toni@invi.hu, bela@invi.hu, antal@invi.hu', subject: "Invitation")
+    #mail(to: invitation.user.email, subject: "Group invitation")
   end
 end

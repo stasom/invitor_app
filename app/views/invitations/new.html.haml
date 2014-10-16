@@ -1,7 +1,9 @@
 %h2 New invitation
 = form_for @invitation, url: {controller: "invitations", action: "create"} do |f|
-  = text_field_tag 'invitation[user_emails]'
-  = f.hidden_field :event_id
-  %br
+  .field
+    = text_field_tag 'invitation[user_emails]'
+  .field
+    = f.hidden_field :event_id
+    %br
   .dev-butt
     = f.submit "Send emails"

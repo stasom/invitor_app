@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   end
 
   def my_index
-    @events = current_user.events
+    @events = Event.get_events_page(params[:page])
   end
 
   def show
@@ -13,7 +13,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @event.user = User.find(params[:user_id])
+    @event.owner = User.find(params[:owner_id])
   end
 
   def edit
@@ -23,7 +23,7 @@ class EventsController < ApplicationController
   def create
     #@event_user = params[:event][:user_id]
     @event = Event.new(event_params)
-    #@event.user = current_user
+    @event.owner = current_user
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
     else

@@ -12,6 +12,7 @@
   %tbody
     - @future_events.each do |event|
       %tr
+        /%td= event.owner_id
         %td= event.name
         %td= event.start_date.strftime("%d/%m/%Y %H:%M")
         %td= event.end_date.strftime("%d/%m/%Y %H:%M")
@@ -43,7 +44,7 @@
         %td= event.end_date.strftime("%d/%m/%Y %H:%M")
         %td= event.location
         %td= event.description
-        - if user_signed_in? && event.owner == current_user
+        - if user_signed_in?
           %td= link_to 'S', event, method: :get
           - if event.owner == current_user
             %td
