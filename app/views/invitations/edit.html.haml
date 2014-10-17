@@ -1,2 +1,10 @@
-%h1 Invitations#edit
-%p Find me in app/views/invitations/edit.html.haml
+%h1 Hello #{@invitation.user_email}!
+
+= form_for(@invitation) do |f|
+  .accept-field
+    = f.check_box :accepted
+    = f.label :accept_invitation
+    %br
+    %br
+  .dev-butt
+    = f.submit

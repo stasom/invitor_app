@@ -6,7 +6,7 @@ class Invitation < ActiveRecord::Base
 
   def self.create_invitations(invitation_event_id, user_emails)
     #invitation_event_id = params[:invitation][:event_id]
-    emails = user_emails
+    #emails = user_emails
     #user_emails = params[:invitation][:user_emails]
     user_emails.split(", ").each do |email|
       if User.find_by_email(email)

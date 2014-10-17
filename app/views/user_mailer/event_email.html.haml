@@ -3,5 +3,6 @@
 %p This event begins on #{@event.start_date} and ends on #{@event.end_date}.
 %p Location: #{@event.location}
 %p Description: #{@event.description}
-%p If you would like to attend this event please click the link below:
-
+%p If you would like to attend this event please click the link below and accept invitation:
+%p
+  = link_to "ACCEPT INVITATION", edit_invitation_url(@invitation.id)

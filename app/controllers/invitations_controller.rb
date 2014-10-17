@@ -11,6 +11,7 @@ class InvitationsController < ApplicationController
   end
 
   def edit
+    @invitation = Invitation.find(params[:id])
   end
 
   def create
@@ -46,6 +47,12 @@ class InvitationsController < ApplicationController
   end
 
   def update
+    @invitation = Invitation.find(params[:id])
+    if @invitation.update_attribute(:accepted, true)
+      redirect_to edit_invitation_path, notice: 'Invitation was accepted.'
+    else
+      render :edit
+    end
   end
 
   def destroy

@@ -9,6 +9,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @event_invitations = @event.invitations.where(accepted: true)
+    #puts @event_invitations
   end
 
   def new
