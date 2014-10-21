@@ -26,6 +26,7 @@
   %strong
     - @event_invitations.each do |receiver|
       = receiver.user_email
+      ,
 %br
 -if @event.owner == current_user
   .inv-butt

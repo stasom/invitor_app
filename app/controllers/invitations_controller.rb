@@ -8,6 +8,7 @@ class InvitationsController < ApplicationController
   def new
     @invitation = Invitation.new
     @invitation.event = Event.find(params[:event_id])
+    @user_emails = params[:user_emails]
   end
 
   def edit
@@ -15,7 +16,14 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    @invitation = Invitation.create_invitations(params[:invitation][:event_id], params[:invitation][:user_emails])
+    @user_emails = params[:invitation][:user_emails]
+    invalid_emails = Invitation.create_invitations(params[:invitation][:event_id], params[:invitation][:user_emails])
+    if invalid_emails.empty?
+      redirect_to event_path(params[:invitation][:event_id]), notice: 'Invitation was successfully send to ' + @user_emails + '.'
+    else
+      redirect_to new_invitation_path(event_id: params[:invitation][:event_id], user_emails: @user_emails), alert: 'I did not send out the invitations because these formats are invalid: ' + invalid_emails.join(', ') + '.'
+    end
+
     # user_emails = params[:invitation][:user_emails]
     # user_emails.split(", ").each do |email|
     #   if User.find_by_email(email)
