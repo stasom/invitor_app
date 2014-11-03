@@ -54,6 +54,8 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.1)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -186,6 +188,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
+  friendly_id
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails

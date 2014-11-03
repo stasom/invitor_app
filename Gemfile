@@ -13,6 +13,7 @@ gem 'devise'
 gem 'will_paginate'
 gem 'carrierwave'
 gem 'animate-rails'
+gem 'friendly_id'
 
 gem 'jquery-rails'
 gem 'turbolinks'

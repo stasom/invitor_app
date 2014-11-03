@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+
   def index
     @events = Event.get_events_page(params[:page])
   end
@@ -8,7 +10,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
     @event_invitations = @event.invitations.where(accepted: true)
     #puts @event_invitations
   end
@@ -19,7 +20,6 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
   end
 
   def create
@@ -34,7 +34,6 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
@@ -43,17 +42,22 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
-    respond_to do |format|
-      redirect_to events_url, notice: 'Event was successfully destroyed.'
-    end
+    redirect_to events_path, notice: 'Event was successfully destroyed.'
   end
 
   private
-    def event_params
-      params.require(:event).permit(:name, :description, :start_date, :end_date, :location)
+  def set_event
+    begin
+      @event = Event.friendly.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to events_path, notice: "We did not find that Event."
     end
+  end
+
+  def event_params
+    params.require(:event).permit(:name, :description, :start_date, :end_date, :location)
+  end
 end
 
 # The require method ensures that a specific parameter is present, and if it's not provided, 
